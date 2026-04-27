@@ -88,6 +88,7 @@ q5_workflow <- c(
 
 # --- UI SECTION ---
 ui <- dashboardPage(
+  skin = "blue",
   dashboardHeader(title = "MCA Data Analysis"),
   dashboardSidebar(
     sidebarMenu(
@@ -97,7 +98,15 @@ ui <- dashboardPage(
   ),
   dashboardBody(
     # include custom styles
-    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
+    tags$div(
+      class = "hero-banner",
+      tags$div(
+        class = "hero-copy",
+        tags$h1("Titanic + Fuel Efficiency Analysis"),
+        tags$p("A polished, assignment-ready dashboard with data exploration, factor analysis, and a machine learning pipeline.")
+      )
+    ),
     tabItems(
       # Titanic Tab
       tabItem(tabName = "titanic",

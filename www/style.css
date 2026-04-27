@@ -1,44 +1,141 @@
-/* Custom styles for improved UI */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(0, 119, 182, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(52, 168, 83, 0.12), transparent 22%),
+    linear-gradient(180deg, #f6f9fc 0%, #eef4f9 100%);
 }
 
-/* Header styling */
 .main-header .logo {
-  background-color: #0b5a8a !important;
+  background: linear-gradient(135deg, #06263a 0%, #0f5b8a 100%) !important;
   color: #fff !important;
-  font-weight: 600;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
 .main-header .navbar {
-  background-color: #0b5a8a !important;
+  background: linear-gradient(135deg, #0f5b8a 0%, #1780b8 100%) !important;
 }
 
-/* Box and value box tweaks */
+.main-sidebar {
+  background: linear-gradient(180deg, #0a2234 0%, #102d46 100%);
+}
+
+.sidebar-menu > li > a {
+  color: rgba(255, 255, 255, 0.88);
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu > li:hover > a,
+.sidebar-menu > li.active > a {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-left-color: #67d5ff;
+  color: #fff;
+}
+
+.hero-banner {
+  margin: 16px 15px 22px;
+  padding: 28px 30px;
+  border-radius: 24px;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(8, 34, 55, 0.96), rgba(18, 98, 142, 0.9)),
+    url('') center/cover no-repeat;
+  box-shadow: 0 18px 40px rgba(8, 34, 55, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 45%);
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+.hero-copy h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hero-copy p {
+  margin: 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
 .box {
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(11,90,138,0.08);
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(15, 47, 71, 0.08);
+  overflow: hidden;
+}
+
+.box .box-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f3f8fc 100%);
+  color: #14324a;
+  border-bottom: 1px solid rgba(20, 50, 74, 0.08);
+}
+
+.box .box-title {
+  font-weight: 700;
+}
+
+.box-body {
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .value-box {
-  border-radius: 8px;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(10, 34, 52, 0.12);
 }
 
-/* Make help text a bit more readable */
-.help-block, .small-box p, .box p {
-  color: #555;
+.small-box h3 {
+  font-size: 30px;
+  font-weight: 800;
 }
 
-/* Footer signature */
+.small-box p,
+.help-block,
+.box p,
+.box li,
+.table {
+  color: #2b3d4f;
+}
+
+.table > thead > tr > th {
+  background: #eef5fb;
+  color: #15354f;
+  border-bottom: 0;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(21, 53, 79, 0.03);
+}
+
 .app-footer {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #f5f7fa;
-  color: #333;
+  background: rgba(10, 34, 52, 0.96);
+  color: #fff;
   text-align: center;
-  padding: 8px 0;
-  border-top: 1px solid #e1e4e8;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 13px;
+  letter-spacing: 0.3px;
+  z-index: 9999;
 }
