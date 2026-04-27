@@ -16,7 +16,7 @@ titanic_clean <- titanic %>%
 titanic_stats <- titanic_clean %>%
   summarise(
     Total = n(),
-    Survived = sum(Survived == "Survived", na.rm = TRUE),
+    SurvivedCount = sum(Survived == "Survived", na.rm = TRUE),
     SurvivalRate = mean(Survived == "Survived"),
     MedianAge = median(Age, na.rm = TRUE),
     AvgFamily = round(mean(FamilySize, na.rm = TRUE), 2)

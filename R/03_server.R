@@ -68,7 +68,7 @@ server <- function(input, output) {
 
   output$survivalBox <- renderValueBox({
     valueBox(
-      paste0(round(100 * titanic_stats$SurvivalRate, 1), "%"),
+      paste0(scales::percent(titanic_stats$SurvivalRate, accuracy = 0.1), " (", titanic_stats$SurvivedCount, ")"),
       "Overall Survival Rate",
       icon = icon("heartbeat"),
       color = "green"
