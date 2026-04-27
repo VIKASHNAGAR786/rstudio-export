@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300" role="img" aria-label="Analysis illustration">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eaf6ff"/>
+      <stop offset="100%" stop-color="#bfe3f8"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f5b8a"/>
+      <stop offset="100%" stop-color="#1c8cc7"/>
+    </linearGradient>
+  </defs>
+  <rect width="520" height="300" rx="28" fill="url(#sky)"/>
+  <circle cx="392" cy="74" r="34" fill="#ffffff" opacity="0.8"/>
+  <circle cx="433" cy="68" r="20" fill="#ffffff" opacity="0.7"/>
+  <rect x="52" y="54" width="220" height="176" rx="22" fill="#ffffff" opacity="0.88"/>
+  <rect x="78" y="182" width="26" height="30" rx="6" fill="#0f5b8a"/>
+  <rect x="118" y="154" width="26" height="58" rx="6" fill="#0f5b8a"/>
+  <rect x="158" y="118" width="26" height="94" rx="6" fill="#0f5b8a"/>
+  <rect x="198" y="136" width="26" height="76" rx="6" fill="#0f5b8a"/>
+  <rect x="238" y="96" width="26" height="116" rx="6" fill="#0f5b8a"/>
+  <path d="M318 170h118l-16 28H336z" fill="#ffffff"/>
+  <path d="M347 120h42l8 50h-58z" fill="#ffffff"/>
+  <path d="M358 112v46" stroke="#1c8cc7" stroke-width="7" stroke-linecap="round"/>
+  <path d="M368 121l26 13-26 13z" fill="#67d5ff"/>
+  <path d="M54 244c38-18 74-18 112 0s74 18 112 0 74-18 112 0 74 18 112 0" fill="none" stroke="url(#wave)" stroke-width="10" stroke-linecap="round"/>
+</svg>
