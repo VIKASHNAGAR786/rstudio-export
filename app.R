@@ -3,6 +3,7 @@ library(shinydashboard)
 library(ggplot2)
 library(dplyr)
 library(caret) # For Q6: ML Data Splitting
+library(scales)
 
 # --- DATA PREPARATION (Global) ---
 titanic <- read.csv("data/titanic.csv")
@@ -23,6 +24,16 @@ titanic_clean <- titanic %>%
     FamilySize = SibSp + Parch + 1
   )
 
+# --- SUMMARY STATS FOR UI ---
+titanic_stats <- titanic_clean %>%
+  summarise(
+    Total = n(),
+    Survived = sum(as.numeric(Survived) - 1 == 1, na.rm = TRUE),
+    SurvivalRate = mean(Survived == "Survived") ,
+    MedianAge = median(Age, na.rm = TRUE),
+    AvgFamily = round(mean(FamilySize, na.rm = TRUE), 2)
+  )
+
 # --- UI SECTION ---
 ui <- dashboardPage(
   dashboardHeader(title = "MCA Data Analysis"),
@@ -33,18 +44,29 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(
+    # include custom styles
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
     tabItems(
       # Titanic Tab
       tabItem(tabName = "titanic",
               fluidRow(
+                valueBoxOutput("totalBox", width = 3),
+                valueBoxOutput("survivalBox", width = 3),
+                valueBoxOutput("medianAgeBox", width = 3),
+                valueBoxOutput("familyBox", width = 3)
+              ),
+              fluidRow(
                 box(title = "Structure & Summary (Q1a)", width = 12, collapsible = TRUE,
-                    verbatimTextOutput("structure")),
+                    verbatimTextOutput("structure"))
+              ),
+              fluidRow(
                 box(title = "Survival Analysis (Q4)", width = 8,
                     plotOutput("factorPlot")),
                 box(title = "Controls", width = 4,
                     selectInput("factorVar", "Select Variable (Q4a):", 
-                                choices = c("Sex", "Pclass", "Embarked")),
-                    helpText("This plot shows how factor levels influence survival."))
+                                choices = c("Sex", "Pclass", "Embarked"), selected = "Sex"),
+                    p("This plot shows how factor levels influence survival. Use the controls to switch variables.")
+                )
               )
       ),
       # mtcars Tab
@@ -59,6 +81,9 @@ ui <- dashboardPage(
               )
       )
     )
+    ,
+    tags$div(class = "app-footer",
+             "developed by vikash nagar ; mca 2 sem ; kid 27416")
   )
 )
 
@@ -73,9 +98,48 @@ server <- function(input, output) {
   # Q4: Factor Distribution Plot
   output$factorPlot <- renderPlot({
     ggplot(titanic_clean, aes_string(x = input$factorVar, fill = "Survived")) +
-      geom_bar(position = "dodge") +
-      theme_minimal() +
-      labs(title = paste("Distribution of", input$factorVar), y = "Passenger Count")
+      geom_bar(position = "fill") +
+      scale_y_continuous(labels = percent_format()) +
+      scale_fill_brewer(palette = "Set2") +
+      theme_minimal(base_size = 14) +
+      labs(title = paste("Survival rate by", input$factorVar), y = "Proportion", fill = "Outcome")
+  })
+
+  # Value boxes for summary stats
+  output$totalBox <- renderValueBox({
+    valueBox(
+      formatC(titanic_stats$Total, format = "d", big.mark = ","),
+      "Total Passengers",
+      icon = icon("users"),
+      color = "aqua"
+    )
+  })
+
+  output$survivalBox <- renderValueBox({
+    valueBox(
+      paste0(round(100 * titanic_stats$SurvivalRate, 1), "%"),
+      "Overall Survival Rate",
+      icon = icon("heartbeat"),
+      color = "green"
+    )
+  })
+
+  output$medianAgeBox <- renderValueBox({
+    valueBox(
+      titanic_stats$MedianAge,
+      "Median Age",
+      icon = icon("child"),
+      color = "yellow"
+    )
+  })
+
+  output$familyBox <- renderValueBox({
+    valueBox(
+      titanic_stats$AvgFamily,
+      "Avg Family Size",
+      icon = icon("users"),
+      color = "purple"
+    )
   })
   
   # Q6: Machine Learning Pipeline

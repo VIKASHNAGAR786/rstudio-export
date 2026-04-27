@@ -1,0 +1,44 @@
+/* Custom styles for improved UI */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Header styling */
+.main-header .logo {
+  background-color: #0b5a8a !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.main-header .navbar {
+  background-color: #0b5a8a !important;
+}
+
+/* Box and value box tweaks */
+.box {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(11,90,138,0.08);
+}
+
+.value-box {
+  border-radius: 8px;
+}
+
+/* Make help text a bit more readable */
+.help-block, .small-box p, .box p {
+  color: #555;
+}
+
+/* Footer signature */
+.app-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f5f7fa;
+  color: #333;
+  text-align: center;
+  padding: 8px 0;
+  border-top: 1px solid #e1e4e8;
+  font-size: 13px;
+}
